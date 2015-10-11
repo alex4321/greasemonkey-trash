@@ -15,7 +15,16 @@
 // ==/UserScript==
 
 (function() {
-  function update() {
+  function updatePosts() {
+    $("div.article").each(function() {
+      var author = $(this).find(".uhead_nick a").text();
+      if (author === "nezermoar") {
+        var text = $(this).find(".post_content").eq(0);
+        text.html(text.html().replace(/8/gi, "в"));
+      }
+    });
+  }
+  function updateComments() {
     console.log("UPDATE");
     $(".comment").each(function() {
       var author = $(this).find(".comment_username").text();
@@ -25,9 +34,10 @@
       }
     });
   }
-  update();
+  updatePosts();
+  updateComments();
   
   $(".toggleComments").click(function() {
-    setTimeout(update, 2000);
+    setTimeout(updateComments, 2000);
   });
 })();
