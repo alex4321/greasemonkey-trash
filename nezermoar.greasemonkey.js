@@ -1,11 +1,9 @@
-// ----------Куча комментариев----------------------------------------------
-//
 // ==UserScript==
-// @name Hello World
+// @name Fix nezermoar "8"
 // @namespace absolvo.ru/
 // @version 0.01
 // @source absolvo.ru/
-// @description Fix commemts
+// @description Fix nezermoar "8"
 // @include http://joyreactor.cc
 // @include http://joyreactor.cc/*
 // @include http://reactor.cc
