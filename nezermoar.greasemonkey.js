@@ -1,3 +1,5 @@
+// ----------Куча комментариев----------------------------------------------
+//
 // ==UserScript==
 // @name Fix nezermoar "8"
 // @namespace absolvo.ru/
@@ -15,7 +17,7 @@
 (function() {
   function updatePosts() {
     $("div.article").each(function() {
-      var author = $(this).find(".uhead_nick a").text();
+      var author = $(this).find(".uhead_nick a,.reply-link a").eq(0).text();
       if (author === "nezermoar") {
         var text = $(this).find(".post_content").eq(0);
         text.html(text.html().replace(/8/gi, "в"));
@@ -23,11 +25,17 @@
     });
   }
   function updateComments() {
-    console.log("UPDATE");
+    console.log("Update");
+    $(".comment_show").click(function() {
+      setTimeout(updateComments, 500);
+    });
     $(".comment").each(function() {
-      var author = $(this).find(".comment_username").text();
+      var author = $(this).find(".reply-link a").eq(0).text();
       if (author === "nezermoar") {
-        var text = $(this).find(".txt").eq(0);
+        var text = $(this).find(".txt>div, .txt>span").eq(0);
+        if(text[0].className === "comments_bottom") {
+          return;
+        }
         text.html(text.html().replace(/8/gi, "в"));
       }
     });
